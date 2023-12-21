@@ -54,9 +54,9 @@ public class FlutterBoostActivity extends FlutterActivity implements FlutterView
     private boolean isAttached = false;
     /////
 
-    private boolean isDebugLoggingEnabled() {
-        return FlutterBoostUtils.isDebugLoggingEnabled();
-    }
+    // private boolean isDebugLoggingEnabled() {
+    //     return FlutterBoostUtils.isDebugLoggingEnabled();
+    // }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
