@@ -97,7 +97,6 @@
 
         <activity
             android:name=".TransparencyPageActivity"
-            android:exported="true"
             android:theme="@style/TranTheme.Translucente"
             android:configChanges="screenSize|smallestScreenSize|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustResize">

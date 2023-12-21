@@ -112,6 +112,11 @@ public class FlutterBoostUtils {
     public static void setSystemChromeSystemUIOverlayStyle(@NonNull Activity activity,
                                                            PlatformChannel.SystemChromeStyle systemChromeStyle) {
         Window window = activity.getWindow();
+        //joey:start
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            window.setStatusBarColor(0x40FF0000);
+//        }
+        //joey:end
         View view = window.getDecorView();
         WindowInsetsControllerCompat windowInsetsControllerCompat =
                 new WindowInsetsControllerCompat(window, view);

@@ -21,6 +21,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    // 创建一个标签
+    UILabel *helloLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 100, 600, 50)];
+    helloLabel.text = @"Hello, World!";
+    helloLabel.textColor = [UIColor blackColor];
+    
+    // 将标签添加到视图中
+    [self.view addSubview:helloLabel];
 }
 
 - (IBAction)pushFlutterPage:(id)sender {

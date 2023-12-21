@@ -21,6 +21,7 @@ dependencies:
   cupertino_icons: ^1.0.5
   image_picker: ^0.8.5+3
   video_player: ^2.4.6
+  # video_player: 2.7.2
   webview_flutter: ^3.0.4
   dual_screen: ^1.0.3
 

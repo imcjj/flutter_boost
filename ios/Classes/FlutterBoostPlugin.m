@@ -91,6 +91,7 @@
   }
 }
 
+//joey:由flutterengine自己调用这个函数来完成对plugin的初始化，相当于android中的FlutterPlugin.onAttachedToEngine函数
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>  *)registrar {
   FlutterBoostPlugin* plugin = [[FlutterBoostPlugin alloc] initWithMessenger:(registrar.messenger)];
   [registrar publish:plugin];

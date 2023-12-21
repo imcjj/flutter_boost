@@ -56,6 +56,7 @@ public class FlutterBoostPlugin implements FlutterPlugin, NativeRouterApi, Activ
         return delegate;
     }
 
+    //joey:由flutterengine自己调用这个函数来完成对plugin的初始化，相当于ios中的FlutterPlugin.registerWithRegistrar函数
     @Override
     public void onAttachedToEngine(FlutterPluginBinding binding) {
         if (isDebugLoggingEnabled()) Log.d(TAG, "#onAttachedToEngine: " + this);

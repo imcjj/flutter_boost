@@ -8,6 +8,7 @@ import android.app.Activity;
 
 import java.util.Map;
 
+
 /**
  * A container which contains the FlutterView
  */

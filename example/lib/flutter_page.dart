@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boost/flutter_boost.dart';
@@ -17,11 +19,21 @@ class _FlutterIndexRouteState extends State<FlutterIndexRoute>
     with PageVisibilityObserver {
   static const String _kTag = 'page_visibility';
   bool withContainer = true;
-
+  //joey:start
+  Color _color = Colors.red;
+  late Timer _timer;
+  //joey:end
   @override
   void initState() {
     super.initState();
     Logger.log('$_kTag#initState, ${widget.uniqueId}, $this');
+    //joey:start
+    _timer = Timer.periodic(Duration(seconds: 1), (Timer timer) {
+      setState(() {
+        _color = _color == Colors.red ? Colors.blue : Colors.red;
+      });
+    });
+    //joey:end
   }
 
   @override
@@ -289,14 +301,20 @@ class _FlutterIndexRouteState extends State<FlutterIndexRoute>
                 child: Container(
                     padding: const EdgeInsets.all(8.0),
                     margin: const EdgeInsets.all(8.0),
-                    color: Colors.yellow,
+                    // color: Colors.yellow,
+                    //joey:start
+                    color: _color,
+                    //joey:end
                     child: const Text(
                       'PlatformView Perf Test',
                       style: TextStyle(fontSize: 22.0, color: Colors.black),
                     )),
-                onTap: () => BoostNavigator.instance.push(
-                    "platformview/listview",
-                    withContainer: withContainer),
+                onTap: () =>
+                    BoostNavigator.instance.push("platformview/listview",
+                        //joey:start
+                        // "flutterPage",
+                        //joey:end
+                        withContainer: withContainer),
               ),
               InkWell(
                 child: Container(

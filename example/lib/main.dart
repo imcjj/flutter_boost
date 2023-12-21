@@ -147,6 +147,7 @@ class _MyAppState extends State<MyApp> {
     //   return PageRouteBuilder<dynamic>(
     //       settings: settings, pageBuilder: (_, __, ___) => Container());
     // },
+
     'embedded': (settings, uniqueId) {
       return PageRouteBuilder<dynamic>(
           settings: settings,

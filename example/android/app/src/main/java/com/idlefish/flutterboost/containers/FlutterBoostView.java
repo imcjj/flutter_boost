@@ -20,6 +20,7 @@ import io.flutter.embedding.android.RenderMode;
 import io.flutter.embedding.android.TransparencyMode;
 import io.flutter.embedding.engine.renderer.FlutterUiDisplayListener;
 
+
 import static com.idlefish.flutterboost.containers.FlutterActivityLaunchConfigs.EXTRA_UNIQUE_ID;
 import static com.idlefish.flutterboost.containers.FlutterActivityLaunchConfigs.EXTRA_URL;
 import static com.idlefish.flutterboost.containers.FlutterActivityLaunchConfigs.EXTRA_URL_PARAM;
@@ -37,6 +38,7 @@ public class FlutterBoostView extends LifecycleView implements FlutterViewContai
         }
         return hasDestroyed;
     }
+
 
     @NonNull
     public static CachedEngineBuilder withCachedEngine() {

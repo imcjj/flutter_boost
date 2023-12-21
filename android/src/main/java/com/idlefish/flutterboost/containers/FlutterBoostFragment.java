@@ -51,6 +51,7 @@ public class FlutterBoostFragment extends FlutterFragment implements FlutterView
         return FlutterBoostUtils.isDebugLoggingEnabled();
     }
 
+
     @Override
     public void detachFromFlutterEngine() {
         /**

@@ -29,7 +29,7 @@
     options.dartEntryPointArgs = @[ @"I'm from IOS!", @"--for-test" ];
 
     MyFlutterBoostDelegate* delegate=[[MyFlutterBoostDelegate alloc ] init];
-    [[FlutterBoost instance] setup:application delegate:delegate callback:^(FlutterEngine *engine) {
+    [[FlutterBoost instance] setup:application delegate:delegate callback:^void(FlutterEngine *engine) {
         NSObject<FlutterPluginRegistrar>* registrar = [engine registrarForPlugin:@"plugin-name"];
         FLNativeViewFactory* factory = [[FLNativeViewFactory alloc] initWithMessenger:registrar.messenger];
         [[engine registrarForPlugin:@"<plugin-name>"] registerViewFactory:factory withId:@"<simple-text-view>"];
@@ -50,6 +50,7 @@
 
     UINavigationController *rvc = [[UINavigationController alloc] initWithRootViewController:tabVC];
 
+    //joey:这两句是为了使得FlutterBoost的navigation和window的navigation保持一致
     delegate.navigationController=rvc;
 
 

@@ -55,20 +55,21 @@ public class FlutterBoostActivity extends FlutterActivity implements FlutterView
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i("joey_test","flutter is onCreate");
         if (isDebugLoggingEnabled()) Log.d(TAG, "#onCreate: " + this);
         final FlutterContainerManager containerManager = FlutterContainerManager.instance();
         // try to detach prevous container from the engine.
         FlutterViewContainer top = containerManager.getTopContainer();
         if (top != null && top != this) {
-            if (top instanceof FlutterBoostActivity) {
-                PlatformChannel.SystemChromeStyle preContainerTheme = FlutterBoostUtils.getCurrentSystemUiOverlayTheme(((FlutterBoostActivity) top).platformPlugin);
-                if (preContainerTheme != null) {
-                    FlutterBoostUtils.setSystemChromeSystemUIOverlayStyle(this, preContainerTheme);
-                }
+           if (top instanceof FlutterBoostActivity) {
+               PlatformChannel.SystemChromeStyle preContainerTheme = FlutterBoostUtils.getCurrentSystemUiOverlayTheme(((FlutterBoostActivity) top).platformPlugin);
+               if (preContainerTheme != null) {
+                   FlutterBoostUtils.setSystemChromeSystemUIOverlayStyle(this, preContainerTheme);
+               }
             }
             top.detachFromEngineIfNeeded();
         }
-        super.onCreate(savedInstanceState);
+       super.onCreate(savedInstanceState);
         stage = LifecycleStage.ON_CREATE;
         flutterView = FlutterBoostUtils.findFlutterView(getWindow().getDecorView());
         flutterView.detachFromFlutterEngine(); // Avoid failure when attaching to engine in |onResume|.
@@ -98,20 +99,109 @@ public class FlutterBoostActivity extends FlutterActivity implements FlutterView
 
     @Override
     protected void onStart() {
+        Log.i("joey_test","flutter is onStart");
         super.onStart();
         stage = LifecycleStage.ON_START;
         if (isDebugLoggingEnabled()) Log.d(TAG, "#onStart: " + this);
     }
 
     @Override
+    protected void onRestart(){
+        Log.i("joey_test","flutter is onRestart");
+        super.onRestart();
+    }
+    @Override
     protected void onStop() {
+        Log.i("joey_test","flutter is onStop");
         super.onStop();
         stage = LifecycleStage.ON_STOP;
         if (isDebugLoggingEnabled()) Log.d(TAG, "#onStop: " + this);
     }
 
     @Override
+    public void onTopResumedActivityChanged(boolean isTopResumedActivity) {
+        super.onTopResumedActivityChanged(isTopResumedActivity);
+        if(isTopResumedActivity){
+            Log.i("joey_test","flutter is onTopResumed");
+//            test_change();
+        }else{
+            Log.i("joey_test","flutter is not onTopResumed");
+//            this.detachFromEngineIfNeeded();
+        }
+    }
+
+    //joey:start
+//    @Override
+//    public void onResume() {
+//        Log.i("joey_test","flutter is onResume");
+//        super.onResume();
+////        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+////            flutterOnResume();
+////        }
+////        //joey:start
+//        try {
+//            // 获取父类的 Class 对象
+//            Class<?> superClass = this.getClass().getSuperclass().getSuperclass();
+//
+//            // 尝试从父类中获取方法对象，传入参数类型来检查特定的重载方法
+//            superClass.getDeclaredMethod("onTopResumedActivityChanged", boolean.class);
+//
+//            // 如果没有引发异常，说明该重载方法存在
+//            Log.i("joey_test","onTopResumed exist");
+//        } catch (NoSuchMethodException e) {
+//            // 如果引发异常，说明该重载方法不存在
+//            Log.i("joey_test","onTopResumed not exist");
+//            flutterOnResume();
+//        }
+////        //joey:end
+//    }
+//    @Override
+//    public void onTopResumedActivityChanged(boolean isTopResumedActivity) {
+//        super.onTopResumedActivityChanged(isTopResumedActivity);
+//        //  >= Android Q (API level 29) and higher, 某些厂商可能因为在多屏特性时，可能存在多个activity同时处于resumed状态
+//        //  此时不能使用OnResume来判断，而是使用onTopResumedActivityChanged来判断
+//        // https://developer.android.com/reference/android/app/Activity#onTopResumedActivityChanged(boolean)
+//        if (isTopResumedActivity) {
+//            Log.i("joey_test","flutter is onTopResumed");
+//            flutterOnResume();
+//        }else{
+//            Log.i("joey_test","flutter is not onTopResumed");
+//        }
+//    }
+//    private void flutterOnResume() {
+//        final FlutterContainerManager containerManager = FlutterContainerManager.instance();
+//        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q) {
+//            FlutterViewContainer top = containerManager.getTopActivityContainer();
+//            boolean isActiveContainer = containerManager.isActiveContainer(this);
+//            if (isActiveContainer && top != null && top != this && !top.isOpaque() && top.isPausing()) {
+//                Log.w(TAG, "Skip the unexpected activity lifecycle event on Android Q. " +
+//                        "See https://issuetracker.google.com/issues/185693011 for more details.");
+//                return;
+//            }
+//        }
+//
+//        stage = LifecycleStage.ON_RESUME;
+//
+//
+//        // try to detach *prevous* container from the engine.
+//        FlutterViewContainer top = containerManager.getTopContainer();
+//        if (top != null && top != this) top.detachFromEngineIfNeeded();
+//
+//        FlutterBoost.instance().getPlugin().onContainerAppeared(this, () -> {
+//            // attach new container to the engine.
+//            attachToEngineIfNeeded();
+//            textureHooker.onFlutterTextureViewRestoreState();
+//            // Since we takeover PlatformPlugin from FlutterActivityAndFragmentDelegate,
+//            // the system UI overlays can't be updated in |onPostResume| callback. So we
+//            // update system UI overlays to match Flutter's desired system chrome style here.
+//            onUpdateSystemUiOverlays();
+//        });
+//    }
+    //joey:end
+
+    @Override
     public void onResume() {
+        Log.i("joey_test","flutter is onResume");
         super.onResume();
         if (isDebugLoggingEnabled()) Log.d(TAG, "#onResume: " + this + ", isOpaque=" + isOpaque());
         final FlutterContainerManager containerManager = FlutterContainerManager.instance();
@@ -143,6 +233,38 @@ public class FlutterBoostActivity extends FlutterActivity implements FlutterView
         });
     }
 
+    //joey:start
+//    private void test_change(){
+//        final FlutterContainerManager containerManager = FlutterContainerManager.instance();
+//        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q) {
+//            FlutterViewContainer top = containerManager.getTopActivityContainer();
+//            boolean isActiveContainer = containerManager.isActiveContainer(this);
+//            if (isActiveContainer && top != null && top != this && !top.isOpaque() && top.isPausing()) {
+//                Log.w(TAG, "Skip the unexpected activity lifecycle event on Android Q. " +
+//                        "See https://issuetracker.google.com/issues/185693011 for more details.");
+//                return;
+//            }
+//        }
+//
+//        stage = LifecycleStage.ON_RESUME;
+//
+//
+//        // try to detach *prevous* container from the engine.
+//        FlutterViewContainer top = containerManager.getTopContainer();
+//        if (top != null && top != this) top.detachFromEngineIfNeeded();
+//
+//        FlutterBoost.instance().getPlugin().onContainerAppeared(this, () -> {
+//            // attach new container to the engine.
+//            attachToEngineIfNeeded();
+//            textureHooker.onFlutterTextureViewRestoreState();
+//            // Since we takeover PlatformPlugin from FlutterActivityAndFragmentDelegate,
+//            // the system UI overlays can't be updated in |onPostResume| callback. So we
+//            // update system UI overlays to match Flutter's desired system chrome style here.
+//            onUpdateSystemUiOverlays();
+//        });
+//    }
+    //joey:end
+
     // Update system UI overlays to match Flutter's desired system chrome style
     protected void onUpdateSystemUiOverlays() {
         if (isDebugLoggingEnabled()) Log.d(TAG, "#onUpdateSystemUiOverlays: " + this);
@@ -152,6 +274,7 @@ public class FlutterBoostActivity extends FlutterActivity implements FlutterView
 
     @Override
     protected void onPause() {
+        Log.i("joey_test","flutter is onPause");
         super.onPause();
         if (isDebugLoggingEnabled()) Log.d(TAG, "#onPause: " + this + ", isOpaque=" + isOpaque());
         FlutterViewContainer top = FlutterContainerManager.instance().getTopActivityContainer();
@@ -245,6 +368,7 @@ public class FlutterBoostActivity extends FlutterActivity implements FlutterView
 
     @Override
     protected void onDestroy() {
+        Log.i("joey_test","flutter is onDestroy");
         if (isDebugLoggingEnabled()) Log.d(TAG, "#onDestroy: " + this);
         stage = LifecycleStage.ON_DESTROY;
         detachFromEngineIfNeeded();

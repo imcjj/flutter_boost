@@ -55,6 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// The codec used by FBNativeRouterApi.
 NSObject<FlutterMessageCodec> *FBNativeRouterApiGetCodec(void);
 
+//joey:接收处理来自flutter侧的消息
 @protocol FBNativeRouterApi
 - (void)pushNativeRouteParam:(FBCommonParams *)param error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)pushFlutterRouteParam:(FBCommonParams *)param error:(FlutterError *_Nullable *_Nonnull)error;
@@ -70,6 +71,7 @@ extern void FBNativeRouterApiSetup(id<FlutterBinaryMessenger> binaryMessenger, N
 /// The codec used by FBFlutterRouterApi.
 NSObject<FlutterMessageCodec> *FBFlutterRouterApiGetCodec(void);
 
+//joey:向flutter侧发送消息
 @interface FBFlutterRouterApi : NSObject
 - (instancetype)initWithBinaryMessenger:(id<FlutterBinaryMessenger>)binaryMessenger;
 - (void)pushRouteParam:(FBCommonParams *)param completion:(void(^)(NSError *_Nullable))completion;
