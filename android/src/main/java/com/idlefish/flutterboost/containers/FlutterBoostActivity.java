@@ -52,6 +52,7 @@ public class FlutterBoostActivity extends FlutterActivity implements FlutterView
     protected PlatformPlugin platformPlugin;
     private LifecycleStage stage;
     private boolean isAttached = false;
+    /////
 
     private boolean isDebugLoggingEnabled() {
         return FlutterBoostUtils.isDebugLoggingEnabled();
