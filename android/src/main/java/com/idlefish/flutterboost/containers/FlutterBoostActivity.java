@@ -56,6 +56,7 @@ public class FlutterBoostActivity extends FlutterActivity implements FlutterView
 //2
     //////////
     private boolean isDebugLoggingEnabled() {
+        //4
         return FlutterBoostUtils.isDebugLoggingEnabled();
     }
 
