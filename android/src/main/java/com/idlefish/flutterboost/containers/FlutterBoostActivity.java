@@ -53,7 +53,7 @@ public class FlutterBoostActivity extends FlutterActivity implements FlutterView
     private LifecycleStage stage;
     private boolean isAttached = false;
     /////
-
+//2
     //////////
     private boolean isDebugLoggingEnabled() {
         return FlutterBoostUtils.isDebugLoggingEnabled();
