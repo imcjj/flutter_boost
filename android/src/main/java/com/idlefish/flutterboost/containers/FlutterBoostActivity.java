@@ -43,8 +43,9 @@ import static com.idlefish.flutterboost.containers.FlutterActivityLaunchConfigs.
 public class FlutterBoostActivity extends FlutterActivity implements FlutterViewContainer {
 
 
-    
+
     private static final String TAG = "FlutterBoost_java";
+    
     private final String who = UUID.randomUUID().toString();
     private final FlutterTextureHooker textureHooker =new FlutterTextureHooker();
     private FlutterView flutterView;
