@@ -41,6 +41,9 @@ import static com.idlefish.flutterboost.containers.FlutterActivityLaunchConfigs.
 import static com.idlefish.flutterboost.containers.FlutterActivityLaunchConfigs.EXTRA_URL_PARAM;
 
 public class FlutterBoostActivity extends FlutterActivity implements FlutterViewContainer {
+
+
+    
     private static final String TAG = "FlutterBoost_java";
     private final String who = UUID.randomUUID().toString();
     private final FlutterTextureHooker textureHooker =new FlutterTextureHooker();
